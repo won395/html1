@@ -1,0 +1,25 @@
+.font_con {
+    color: brown;
+    font-size: 25px;
+    font-weight: bold;
+}
+.con {
+    color: aqua;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.font_bor {
+    border: 1px solid black;
+}
+
+.r {
+    color: red;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.b {
+    color: blue;
+    font-size: 25px;
+}

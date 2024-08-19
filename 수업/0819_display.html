@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .inner {
+            width: 100px;
+            height: 50px;
+            background-color: brown;
+            border: 1px solid black;
+        }
+        .none {
+            display: none;
+        }
+        .block {
+            display: block;
+        }
+        
+        .inline {
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+    <div class="outter">
+        <div class="inner none">1</div>
+        <div class="inner block">2</div>
+        <div class="inner inline">3</div>
+        <div class="inner inner">4</div>
+        <div class="inner inner">5</div>
+    </div>
+</body>
+</html>
