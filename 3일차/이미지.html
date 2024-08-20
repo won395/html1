@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .img_size {
+            width: 100px;
+            height: 100px;
+        }
+        
+        .img_size2 {
+            width: 200px;
+            height: 400px;
+            border: 1px solid black;
+            overflow: scroll;
+        }
+
+        .first {
+            background-color: rgb(100, 100, 100);
+        }
+
+        .dog_img {
+            background-image: url('../img/aja.jpg');
+        }
+
+        .a {
+            background-size: 200px 400px;
+        }
+
+        .b {
+            background-size: contain;
+        }
+        .c {
+            background-size: cover;
+        }
+
+        .scroll {
+            background-color: aliceblue;
+        }
+
+        .gra {
+            width: 400px;
+            height: 200px;
+            margin: 20px;
+            border: 1px solid black;
+        }
+
+        .grad1 {
+            background: linear-gradient(to bottom, red 0%, yellow 50%, blue 100%);
+        }
+
+        .grad2 {
+            background: linear-gradient(50deg, red 0%, yellow 50%, blue 100%);
+        }
+
+        .grad3 {
+            background: linear-gradient(circle at 10% 50%, red 0%, yellow 50%, blue 100%);
+        }
+    </style>
+</head>
+<body>
+    <img src="../img/a.jpg" alt="a" class="img_size">
+    <img src="../img/a.jpg" alt="a" class="img_size">
+
+    <div class="img_size first"></div>
+    <div class="img_size dog_img"></div>
+    <div class="img_size b"></div>
+    <div class="img_size c"></div>
+
+    <div class="dog_img img_size2 a inline"></div>
+    <p>첨가물 없이 자색양파만 100% 담았어요
+        은은하게 달콤한 맛이 매력적인 자색양파를 매일 즙으로 드셔보세요. 물이나 첨가물 없이 전라남도 무안군 황토밭에서 자란 자색양파만 100%를 넣었죠. 상처 없이 큼직하게 잘 익은 원물만을 선별하고, 2대째 쌓인 노하우를 활용해 영양을 진하게 담아냈어요.
+        
+        달콤하고 담백한 자색양파 풍미가 느껴지는 맛으로 요리에 사용하기도 좋아요. 고기를 재워 잡내를 없애거나 육수 등으로 활용할 수 있습니다. 최대 2년 동안 실온보관할 수 있어 냉장고 자리를 차지하지 않아요. 시원한 건강 음료, 풍미를 더하는 요리 재료 등 다양한 방법으로 자색양파즙을 즐겨보세요!</p>
+    <div class="dog_img img_size2 a inline"></div>
+    <p>
+        첨가물 없이 자색양파만 100% 담았어요
+        은은하게 달콤한 맛이 매력적인 자색양파를 매일 즙으로 드셔보세요. 물이나 첨가물 없이 전라남도 무안군 황토밭에서 자란 자색양파만 100%를 넣었죠. 상처 없이 큼직하게 잘 익은 원물만을 선별하고, 2대째 쌓인 노하우를 활용해 영양을 진하게 담아냈어요.
+
+        달콤하고 담백한 자색양파 풍미가 느껴지는 맛으로 요리에 사용하기도 좋아요. 고기를 재워 잡내를 없애거나 육수 등으로 활용할 수 있습니다. 최대 2년 동안 실온보관할 수 있어 냉장고 자리를 차지하지 않아요. 시원한 건강 음료, 풍미를 더하는 요리 재료 등 다양한 방법으로 자색양파즙을 즐겨보세요!
+    </p>
+    <div class="gra grad1"></div>
+    <div class="gra grad2"></div>
+    <div class="gra grad3"></div>
+    
+</body>
+</html>
