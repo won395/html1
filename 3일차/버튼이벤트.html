@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>버튼이벤트</title>
+    <style>
+        .di {
+            margin: 15px;
+            width: 120px;
+            text-align: center;
+            font-size: 25px;
+            font-weight: bold;
+            border: 1px solid black;
+            border-radius: 15px;
+            padding: 15px;
+
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="di" onclick="클릭()">
+        임시버튼
+    </div>
+    <input type="button" value="버튼1" onclick="클릭()">
+
+    <button>버튼2</button>
+
+    <script>
+        // javascript 함수 만들기
+        function 클릭() {
+            alert("javascript 실행")
+        }
+    </script>
+</body>
+</html>
