@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>버튼 이벤트</title>
+    <style>
+        .di {
+            margin: 10px;
+            width: 160px;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            border: 1px solid black;
+            border-radius: 10px;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .di:hover {
+            border-color: blue;
+        }
+
+        .img_re {
+            border: 2px solid wheat;
+            width: 200px;
+            height: 200px;
+            display: none; /* 처음에는 이미지가 보이지 않도록 설정 */
+        }
+
+        .img1 {
+            background-image: url('a.jpg');
+        }
+
+        .img2 {
+            background-image: url('abc.jpg');
+        }
+
+        .img3 {
+            background-image: url('ccc.webp');
+            background-size: contain;
+        }
+    </style>
+</head>
+<body>
+    <input class="di" type="button" value="이미지 버튼1" onclick="toggleImage('img1')">
+    <div id="img1" class="img_re img1"></div>
+
+    <input class="di" type="button" value="이미지 버튼2" onclick="toggleImage('img2')">
+    <div id="img2" class="img_re img2"></div>
+
+    <input class="di" type="button" value="이미지 버튼3" onclick="toggleImage('img3')">
+    <div id="img3" class="img_re img3"></div>
+
+    <script>
+        function toggleImage(id) {
+            let element = document.getElementById(id);
+            if (element.style.display == "block") {
+                element.style.display = "none";
+            } else {
+                element.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>

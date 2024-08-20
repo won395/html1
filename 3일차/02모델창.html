@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>버튼이벤트</title>
     <style>
+        div:hover {
+            color: blue;
+        }
+
         .di {
             margin: 15px;
             width: 120px;
@@ -16,6 +20,10 @@
             padding: 15px;
 
             cursor: pointer;
+        }
+
+        .di:hover {
+            border-color: red;
         }
 
         .outter {
@@ -53,7 +61,7 @@
     <div class="di" onclick="클릭()">
         임시버튼
     </div>
-    <input type="button" value="버튼1" onclick="클릭()">
+    <input type="button" value="버튼1">
 
     <button>버튼2</button>
 

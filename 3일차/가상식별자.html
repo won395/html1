@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가상식별자</title>
+
+    <style>
+        a {
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: none;
+            color: black;
+        }
+
+        a:hover {
+            color: blue;
+            border: 1px solid #999;
+        }
+        a:valid {
+            color: #999;
+        }
+
+        a:link {
+            color: greenyellow;
+        }
+
+        input:hover {
+            border-color: blue;
+        }
+
+        input:focus {
+            border-color: green;
+        }
+
+        label {
+            margin: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        label::before { /* "* 입력창" */
+            content: "*";
+            color: red;
+        }
+
+        label::after { /* "입력창 !" */
+            left: 0px;
+            top: 0px;
+            content: "!";
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <a href="https://www.google.com">구글</a><br>
+    <a href="https://www.wydbwa.com">이상한 사이트</a><br>
+    <a href="https://www.aadwdw.com">이상한 사이트2</a><br>
+    <a href="https://www.korea.com">korea</a><br><br>
+
+
+
+    <label>입력창: </label>
+    <input type="text" id="">
+</body>
+</html>
