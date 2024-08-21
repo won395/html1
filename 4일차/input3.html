@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>input3</title>
+</head>
+<body>
+    <input type="text" name="" id="user_id" value="입력되는 공간">
+    <input type="button" value="클릭" onclick="클릭()">
+
+    <script>
+        let dd = document.getElementById("user_id").value;
+
+        //stack - heap
+        //dd => 'Hello World' -> string x
+        document.getElementById("user_id").value = "java";
+        dd.value = "청양"; // 안바뀜
+
+        클릭();
+        //이벤트 핸들러 (마우스, 키보드, 페이지)
+        function 클릭() {
+            alert(dd.value) // 입력하면 바뀐다는데 안바뀌는데 이거 뭐지
+        }
+        
+
+    </script>
+</body>
+</html>

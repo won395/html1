@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계산기</title>
+</head>
+<body>
+    <input type="text" name="" id="num1"> + <input type="text" name="" id="num2">
+    <input type="button" value="클릭" onclick="클릭()"><br> <!--방법1-->
+    <input type="button" value="클릭" onclick="클릭1()"><br> <!--방법2-->
+    <input type="text" id="result"> 
+    <!-- input 창 3개 첫번쨰 값 + 두번쨰 값 = 결과값 버튼 -->
+
+    <script>
+        function 클릭() { //방법1
+            let n1 = document.getElementById("num1").value;
+            let n2 = document.getElementById("num2").value;
+            let result = document.getElementById("result");
+
+            result.value = parseInt(n1) + parseInt(n2);
+        }
+
+        /* function 클릭1() { //방법2
+            result.value = (parseInt(n1.value) + parseInt(n2.value));
+        } */
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" name="" id="user_id">
+
+    <script>
+        //console.log(); //콘솔 , f12 개발자도구에서 log
+        //javascript 변수타입 / var, let, const 데이터 타입 x
+        //변수타입 변수명 = 값
+        var v1 = "banana";
+        console.log(v1);
+
+        var v1 = "apple"; //중복 가능
+        let le1 = "banana";
+        //let le1 = "apple"; //재선언을 방지 해줌
+
+        function fu() {
+            let le1 = "ㅁ"; // 이렇게하면 재선언 가능
+        }
+
+        const con1 = "상수";
+        console.log(con1);
+        //let = 변수, const = 상수 만 씀 / var안씀
+
+        //null, undifined
+        //null: 값이 없음
+        //undifined: 값이 할당 되지 않는 상태 // 대부분 오타남 알아서 해결햇!
+
+        let yy;
+        console.log(yy);
+        let dd = document.getElementById("user_id").value;
+        console.log(dd);
+        /* if(dd == "undifined" || dd == null) {} */
+
+        //변수타입 3개 var, let, const
+        let str ="abc"; 
+        typeof(str); // 데이터 타입을 알려주는 친구
+        console.log("1", "2"); //출력시 12 나옴
+        console.log(typeof(str), str); // string abc 출력
+
+        // 데이터 타입 변환
+        let num = "100"+""; //*1 추가시 number 100 -> 마지막 글자로 인식하기 떄문에 숫자로 인식함
+        console.log(typeof(num), num); // string 100
+
+        // Number() : 숫자인식
+        console.log(typeof(Number("1.2"), Number("1.2"))); //number 출력
+
+        // parseInt() : 숫자인식 (정수)
+        console.log(typeof(parseInt("1.2"), parseInt("1.2"))); //number 출력 / 실수도 정수로 인식
+
+        // parseFloat() : 숫자인식 (소숫점)
+        console.log(typeof(parseFloat("1.2"), parseFloat("1.2"))); //number
+
+        // String() : 문자
+        console.log(typeof(String("100"), String("100"))); //String
+
+        // Boolean() : 논리 (true, false)
+        console.log(typeof(Boolean("1.2"), Boolean("1.2"))); //boolean
+
+
+    </script>
+</body>
+</html>
