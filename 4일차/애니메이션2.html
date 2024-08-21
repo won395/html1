@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .outline, .box {
+            position: absolute;
+            left: 20%;
+            top: 00px;
+            width: 60px;
+            height: 60px;
+        }
+
+        .outline {
+            top: 150px;
+            margin-left: 200px;
+            margin-top: 20px;
+            border: 3px solid black;
+            position: relative;
+        }
+
+        .box {
+            background-color: deepskyblue;
+        }
+
+        .animation {
+            animation: test02 2s infinite linear;
+        }
+        /*애니메이션 적용 @keyframes 애니메이션명 (변수명)*/
+        @keyframes test02 {
+            from{ 
+                transform: rotate(0deg) translateX(200px);
+            }
+
+            to{
+                transform: rotate(360deg) translateX(00px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="outline">
+        <div class="box translate animation"></div>
+    </div>
+</body>
+</html>

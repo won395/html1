@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>transition</title>
+    <style>
+        /*
+            linear 시작과 끝을 일정하게 진행
+            ease 시작과 끝에서만 천천히 끝날떄 빠르게
+            sase-in 시작할때 천천히 끝날때 빠르게
+            sase-out 시작할때 빠르게 끝날때 천천히
+            sase-in 시작할때 천천히 끝날때 빠르게
+        */
+        .button {
+            background-color: blue;
+            transition: background-color 1.5s ease-in;
+        }
+        .button:hover {
+            background-color: red;
+        }
+
+        .outline, .box {
+            width: 60px;
+            height: 60px;
+        }
+
+        .outline {
+            margin-left: 200px;
+            margin-top: 20px;
+            border: 3px solid black;
+        }
+
+        .box {
+            background-color: deepskyblue;
+            /*transition-delay: 2s;*/
+            transition-duration: 2s;
+            transition-timing-function: ease-in;
+        }
+        .box:hover {
+            transform: translateX(250px);
+            border-radius: 50%;
+        }
+
+        .animation {
+            animation: test03 2s infinite linear;
+        }
+        
+        @keyframes test03 {
+            from{ 
+                transform: rotate(0deg) translateX(200px);
+            }
+
+            to{
+                
+            }
+        }
+    </style>
+</head>
+<body>
+    <input type="button" class="button" value="전송">
+    <div class="outline">
+        <div class="box animation"></div>
+    </div>
+</body>
+</html>

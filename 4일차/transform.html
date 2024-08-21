@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transform</title>
+    <style>
+        .outline, .box {
+            width: 60px;
+            height: 60px;
+        }
+
+        .outline {
+            margin-left: 200px;
+            margin-top: 20px;
+            border: 3px solid black;
+        }
+
+        .box {
+            background-color: deepskyblue;
+        }
+
+        .translate {
+            transform: translateX(50px);
+        }
+
+        .translate1 {
+            transform: translateX(-50px);
+        }
+
+        .translate2 {
+            transform: translate(100px, 0px);
+        }
+
+        .translate3 {
+            transform: translateY(50px);
+        }
+
+        .scale {
+            transform: scale(0.5);
+        }
+        .scale1 {
+            transform: scale(1.5);
+        }
+        .scale2 {
+            transform: scaleX(0.5);
+        }
+        .scale3 {
+            transform: scaleY(0.5);
+        }
+
+        .rotate {
+            transform: rotate(50deg); /*deg 붙여야됨 / 360회전가능 */
+        }
+
+        .rotateX {
+            transform: rotateX(1deg);
+        }
+
+        .parOutline {
+            perspective: 2px;
+        }
+
+        .skew {
+            transform: skew(15deg, 15deg);
+        }
+        .skew1 {
+            transform: skewX(25deg);
+        }
+        .skew2 {
+            transform: skewY(25deg);
+        }
+    </style>
+</head>
+<body>
+    <h1>transfrom</h1>
+    <div class="outline">
+        <div class="box translate"></div> <!-- 우측으로 50px 이동-->
+    </div>
+    <div class="outline">
+        <div class="box translate1"></div>
+    </div>
+    <div class="outline">
+        <div class="box translate2"></div>
+    </div>
+    <div class="outline">
+        <div class="box translate3"></div> 
+    </div>
+
+    <h1>scale</h1>
+    <div class="outline">
+        <div class="box scale"></div>
+    </div>
+    <div class="outline">
+        <div class="box scale1"></div>
+    </div>
+    <div class="outline">
+        <div class="box scale2"></div>
+    </div>
+    <div class="outline">
+        <div class="box scale3"></div>
+    </div>
+
+    <h1>rotate</h1>
+    <div class="outline">
+        <div class="box rotate"></div>
+    </div>
+    <div class="outline parOutline"> <!--사다리꼴 만듦-->
+        <div class="box rotateX"></div>
+    </div>
+    <div class="parOutline"> <!--모양이 이상ㅇ-->
+        <div class="box rotateX"></div>
+    </div>
+
+    <h1>skew</h1>
+    <div class="outline">
+        <div class="box skew"></div>
+    </div>
+    <div class="outline">
+        <div class="box skew1"></div>
+    </div>
+    <div class="outline">
+        <div class="box skew2"></div>
+    </div>
+
+
+
+</body>
+</html>
