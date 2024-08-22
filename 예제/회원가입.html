@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url(111.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 45px;
+            border-radius: 8px;
+            box-shadow: 0 0 150px rgba(0, 255, 13, 0.300);
+            max-width: 590px;
+            width: 100%;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+        }
+
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        textarea {
+            width: 80%;
+            padding: 8px;
+        }
+
+        select {
+            width: 20%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="text"], input[type="password"], input[type="email"] {
+            width: 44%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        input[type="button"] {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        input[type="button"]:hover {
+            background-color: #0056b3;
+        }
+
+        td[colspan="2"] {
+            text-align: center;
+        }
+
+        .center {
+            text-align: center; /* 버튼과 제목 가운데 정렬 */
+        }
+
+        @media screen and (max-width: 600px) {
+            form {
+                padding: 15px;
+            }
+
+            input[type="button"] {
+                width: 100%;
+                margin-top: 20px;
+            }
+
+            th {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <form id="signupForm">
+        <h1>회원가입</h1>
+        <table>
+            <tr>
+                <th colspan="2">회원 기본 정보</th>
+            </tr>
+            <tr>
+                <td>아이디:</td>
+                <td><input type="text" name="userid" maxlength="12" placeholder="ID입력" required> <small> 4-12자의 영문 대소문자와 숫자로만 입력</small></td>
+            </tr>
+            <tr>
+                <td>비밀번호:</td>
+                <td><input type="password" name="password" maxlength="12" placeholder="PW입력" required> <small> 4-12자의 영문 대소문자와 숫자로만 입력</small></td>
+            </tr>
+            <tr>
+                <td>비밀번호 확인:</td>
+                <td><input type="password" name="password_re" maxlength="12" placeholder="PW 다시 입력" required></td>
+            </tr>
+            <tr>
+                <td>메일주소:</td>
+                <td><input type="email" name="email" placeholder="email입력" required> <small>예) id@domain.com</small></td>
+            </tr>
+            <tr>
+                <td>이름:</td>
+                <td><input type="text" name="name" maxlength="13" placeholder="name입력" required></td>
+            </tr>
+            <tr>
+                <th colspan="2">개인 신상 정보</th>
+            </tr>
+            <tr>
+                <td>주민등록번호:</td>
+                <td><input type="text" name="ssn" placeholder="주민번호입력" required oninput="formatSSN(this)"> <small>예) 123456-1234567</small></td>
+            </tr>
+            <tr>
+                <td>생일:</td>
+                <td>
+                    <input type="text" name="birthyear" placeholder="년도입력" required>년
+                    <select name="birthmonth" id="w">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+                    월
+                    <select name="birthday" id="regStartDt_day">
+                    </select>일
+                </td>
+            </tr>
+            <tr>
+                <td>관심분야:</td>
+                <td>
+                    <input type="checkbox" name="interest" value="컴퓨터" checked>컴퓨터
+                    <input type="checkbox" name="interest" value="인터넷">인터넷
+                    <input type="checkbox" name="interest" value="여행">여행
+                    <input type="checkbox" name="interest" value="영화감상">영화감상
+                    <input type="checkbox" name="interest" value="음악감상">음악감상
+                </td>
+            </tr>
+            <tr>
+                <td>자기소개:</td>
+                <td><textarea name="selfintro" rows="6" placeholder="자기소개를 입력하세요"></textarea></td>
+            </tr>
+        </table>
+        <div class="center">
+            <input type="button" value="회원가입" onclick="validateForm()"> 
+            <input type="button" value="다시 입력" onclick="document.getElementById('signupForm').reset();">
+        </div>
+    </form>
+
+    <script>
+        var regStartDtdaySelect = document.getElementById("regStartDt_day");
+        for(var day = 1; day <= 31; day++) {
+            var option = document.createElement("option");
+            option.value = day;
+            option.text = day;
+            regStartDtdaySelect.appendChild(option);
+        }
+
+        function formatSSN(input) {
+            var value = input.value.replace(/\D/g, ''); // 숫자 이외의 문자는 제거
+            var formattedValue = '';
+
+        if (value.length > 6) {
+            var visiblePart = value.slice(0, 6);
+            var hiddenPart = value.slice(6, 13); // 최대 7글자까지 허용
+            formattedValue = visiblePart + '-' + hiddenPart;
+        } else {
+            formattedValue = value;
+        }
+
+        input.value = formattedValue;
+    }
+
+    document.getElementById('ssn-input').addEventListener('input', function () {
+        formatSSN(this);
+    });
+
+
+        function validateForm() {
+            var form = document.getElementById("signupForm");
+            var userid = form.userid.value;
+            var password = form.password.value;
+            var password_re = form.password_re.value;
+            var email = form.email.value;
+            var name = form.name.value;
+            var ssn = form.ssn.value;
+            var birthyear = form.birthyear.value;
+            var birthmonth = form.birthmonth.value;
+            var birthday = form.birthday.value;
+
+            // console.log()을 사용하여 각 값 출력
+            console.log("아이디:", userid);
+            console.log("비밀번호:", password);
+            console.log("비밀번호 확인:", password_re);
+            console.log("이메일:", email);
+            console.log("이름:", name);
+            console.log("주민등록번호:", ssn);
+            console.log("생년:", birthyear);
+            console.log("생월:", birthmonth);
+            console.log("생일:", birthday);
+
+            if (userid.length < 4 || userid.length > 12 || !/^[a-zA-Z0-9]+$/.test(userid)) {
+                alert("아이디는 4-12자의 영문 대소문자와 숫자로만 입력해야 합니다.");
+                return false;
+            }
+
+            if (password.length < 4 || password.length > 12 || !/^[a-zA-Z0-9]+$/.test(password)) {
+                alert("비밀번호는 4-12자의 영문 대소문자와 숫자로만 입력해야 합니다.");
+                return false;
+            }
+
+            if (password !== password_re) {
+                alert("비밀번호가 일치하지 않습니다.");
+                return false;
+            }
+
+            if (!/^\d{6}-\*{7}$/.test(ssn)) {
+                alert("주민등록번호 형식이 올바르지 않습니다.");
+                return false;
+            }
+
+            if (isNaN(birthyear) || birthyear.length !== 4) {
+                alert("유효한 생년을 입력하세요.");
+                return false;
+            }
+
+            if (isNaN(birthmonth) || birthmonth < 1 || birthmonth > 12) {
+                alert("유효한 생월을 선택하세요.");
+                return false;
+            }
+
+            if (isNaN(birthday) || birthday < 1 || birthday > 31) {
+                alert("유효한 생일을 선택하세요.");
+                return false;
+            }
+
+            alert("회원가입이 완료되었습니다.");
+            form.submit();
+        }
+    </script>
+</body>
+</html>
