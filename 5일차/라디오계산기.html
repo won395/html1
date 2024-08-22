@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>라디오 계산기</title>
+</head>
+<body>
+    <input type="text" id="num1">
+    <input type="radio" name="op" value="+" checked>+
+    <input type="radio" name="op" value="-">-
+    <input type="radio" name="op" value="*">*
+    <input type="radio" name="op" value="/">/
+    <input type="text" id="num2">
+    <input type="button" value="버튼" onclick="result()">
+    <input type="text" id="result">
+
+    <script>
+        function result() {
+            let n1 = document.getElementById('num1').value;
+            let n2 = document.getElementById('num2').value;
+            let op = document.getElementsByName('op');
+            for (let i = 0; i < op.length; i++) {
+                if (op[i].checked) {
+                    if (op[i].value == '+') {
+                        document.getElementById('result').value = (parseInt(n1) + parseInt(n2));
+                    } else if (op[i].value == '-') {
+                        document.getElementById('result').value = (parseInt(n1) - parseInt(n2));
+                    } else if (op[i].value == '*') {
+                        document.getElementById('result').value = (parseInt(n1) * parseInt(n2));
+                    } else if (op[i].value == '/') {
+                        document.getElementById('result').value = (parseInt(n1) / parseInt(n2));
+                    } 
+                }
+            }
+        }
+        
+    </script>
+</body>
+</html>
