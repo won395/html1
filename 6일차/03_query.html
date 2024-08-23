@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .border {
+            border: 1px solid black;
+        }
+
+        .padding {
+            padding: 10px;
+        }
+
+        .font_size {
+            font-size: 20px;
+        }
+
+        .border:nth-child(1) {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" class="border padding">
+    <input type="text" class="border font-size">
+
+    <script>
+        //셀렉터 호출
+        //document.querySelectorAll
+
+        let s1 = document.querySelectorAll(".border");
+        console.log(s1);
+
+        let s2 = document.querySelectorAll(".border:nth-child(1)");
+        console.log(s2);
+
+        let s3 = document.querySelectorAll("input");
+        console.log(s3);
+
+        //검색된것중에서 제일 첫번쨰 검색된  것
+        let a1 = document.querySelector(".border");
+        console.log(a1);
+    </script>
+</body>
+</html>

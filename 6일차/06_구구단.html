@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>구구단</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200vh;
+            margin: 0;
+            background-image: url(/img/111.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 45px;
+            border-radius: 8px;
+            max-width: 590px;
+            width: 60%;
+        }
+
+        input[type="text"] {
+            margin: 5px 0;
+            padding: 10px;
+            width: calc(100% - 22px);
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="button"] {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        input[type="button"]:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: black;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <input type="text" id="str" placeholder="첫 번째 값">
+        <input type="text" id="end" placeholder="두 번째 값">
+        <input type="button" value="클릭" onclick="create()">
+        <div id="result">
+            <!-- 구구단 결과가 표시될 영역 -->
+        </div>
+    </form>
+
+    <script>
+        // 1번
+        /*
+        function create() {
+            let str = parseInt(document.getElementById('str').value);
+            let end = parseInt(document.getElementById('end').value);
+            let tableContent = '';
+
+            if (isNaN(str) || isNaN(end) || str < 1 || end > 9 || str > end) { 
+                alert('(1부터 9 사이의 숫자, 시작 단은 끝 단보다 작아야 함)');
+                return;
+            }
+
+            //테이블로 묶어서 사용
+            tableContent += '<table>';
+            for (let i = str; i <= end; i++) {
+                tableContent += '<tr><th colspan="2">' + i + '단</th></tr>';
+                for (let j = 1; j <= 9; j++) {
+                    tableContent += '<tr><td>' + i + ' * ' + j + '</td><td>' + (i * j) + '</td></tr>';
+                }
+            }
+            tableContent += '</table>';
+
+            document.getElementById('result').innerHTML = tableContent;
+        }
+            */
+            
+        //2번
+        function Create() {
+                let number = document.getElementsByTagName('input');
+                
+                let str = parseInt(number[0].value);
+                let end = parseInt(number[1].value);
+                let tableContent = '';
+                for ( let i = 1; i <= end; i++) {
+                    tableContent += '<span>' + str + " * "  + i + " = " + (str * i) + '</span>';
+                }
+                document.getElementById('result').innerHTML = tableContent;
+        }
+    </script>
+</body>
+</html>
