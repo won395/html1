@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Example</title>
+</head>
+<body>
+    <h1>카페</h1>
+
+    <label>1. 카테고리 선택:</label>
+    <select id="menu" onchange="box()">
+        <option value="">메뉴를 선택하세요</option>
+        <option value="cake">케이크</option>
+        <option value="coffee">커피</option>
+    </select>
+
+    <label for="item">2. 메뉴 선택:</label>
+    <select id="item">
+        <option value="">먼저 카테고리를 선택하세요</option>
+    </select>
+
+    <script>
+        
+        /*
+        function box(e) {
+            console.log(e.target); //document.getElementById("menu");
+            let category = document.getElementById("menu");
+            let itemSelect = document.getElementById("item");
+
+            if(category.value === 'coffee') {
+                HtmlTag += '<option>아메리카노</option>';
+                HtmlTag += '<option>아메리카노</option>';
+            } else if(category.value === 'cake') {
+                HtmlTag += '<option>아메리카노</option>';
+                HtmlTag += '<option>아메리카노</option>';
+            }
+            HtmlTag.value
+        }
+        */
+
+
+
+        function box() {
+            let category = document.getElementById("menu").value;
+            let itemSelect = document.getElementById("item");
+            itemSelect.innerHTML = "";
+
+            let options = [];
+
+            if (category === "cake") {
+                options = [
+                    { value: "chocolate_cake", text: "초콜릿 케이크" },
+                    { value: "cheesecake", text: "치즈케이크" },
+                    { value: "strawberry_cake", text: "딸기 케이크" }
+                ];
+            } else if (category === "coffee") {
+                options = [
+                    { value: "americano", text: "아메리카노" },
+                    { value: "latte", text: "라떼" },
+                    { value: "cappuccino", text: "카푸치노" }
+                ];
+            }
+             options.forEach(option => {
+                const newOption = document.createElement("option");
+                newOption.value = option.value;
+                newOption.text = option.text;
+                itemSelect.appendChild(newOption);
+            });
+        }
+    </script>
+
+</body>
+</html>

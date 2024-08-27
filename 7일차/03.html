@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>카페</h1>
+
+    <select id="menu" onchange="changeImg()">
+        <option value="coffee">커피</option>
+        <option value="cake">케이크</option>
+        <option value="cookie">쿠키</option>
+    </select>
+
+    <br><br>
+
+    <img id="itemImage" src="1.webp" alt="Menu Item Image" width="300">
+
+    <!--
+    <script>
+        //배열
+        const imgArr = ["1.webp", "2.webp", "3.jpg"]
+        //첫번쨰 방법
+        function changeImg(e) {
+            // document.getElementById 방법
+            let targetvalue = document.getElementById("sel").value;
+            document.querySelector("itemImage").src = imgArr(targetvalue)
+
+            //querySelector 방법
+            document.querySelector("itemImage").src = imgArr(e.target.value)
+        }
+
+        //두번쨰 방법
+        document.querySelector("menu").addEventListener("change", function(e) {
+            document.querySelector("itemImage").src = imgArr(e.target.value)
+        })
+    </script>
+    -->
+    
+    <script> 
+        function changeImg() {
+            let menu = document.getElementById("menu");
+            let itemImage = document.getElementById("itemImage");
+
+            if(menu.value === 'coffee') {
+                itemImage.src = "1.webp";
+            } else if(menu.value === 'cake') {
+                itemImage.src = "2.webp";
+            } else if(menu.value === 'cookie') {
+                itemImage.src = "3.jpg";
+            }
+        }
+    </script>
+</body>
+</html>
