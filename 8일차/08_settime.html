@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        //시계 (날짜 함수)
+        //현재 pc기준으로 날짜를 정의 (클라이언트 기준, 서버 저장시 활용 x)
+        let today = new Date();
+        console.log('년도: ', today.getFullYear())
+        console.log('월: ', today.getMonth()+1) //월은 0부터 출력
+        console.log('일: ', today.getDay())
+        console.log('', today)
+
+        //1초마다 계속해서 반복 실행
+        //setInterval
+        setInterval(function() {
+            let today = new Date();
+            console.log(String(today.getHours()), '-', String(today.getMinutes()), '-', String(today.getSeconds()));
+        }, 1000); //1초 1000
+
+        */
+       clock();
+       function clock() {
+        setTimeout(function() {
+            alert('time');
+            clock();
+        }, 5000)
+       }
+
+
+       
+       var start = new Date();
+
+       function aClock() {
+        var crrDate = new Date();
+        var divClock = document.getElementById('divClock');
+        var sc = Math.ceil((crrDate.start)/1000);
+
+        var mag = '현재 시간'+ crrDate.getHours()+ '시';
+        mag += crrDate.getMinutes()+'분';
+        mag += crrDate.getSeconds()+'초';
+        mag += '접속 후'+ sc+ '초 경과';
+
+        divClock.innerText = mag;
+
+        setTimeout(aClock, 1000);
+       }
+    </script>
+</body onclick>
+</html>

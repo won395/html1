@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //함수 선언식, 함수 표현식
+
+        //함수 선언식
+        start();
+        function start() {
+            console.log('start');
+        }
+
+        //함수 표현식
+        let fun2 = function() {
+            console.log('변수')
+        }
+        fun2();
+
+        //함수 표현식 es6 (2015년 이전 버전의 it 동작 x => 공무원 pc(국가사업에는 사용지양))
+        let fun3 = () => {
+            console.log('fun3');
+        }
+        fun3();
+
+        start02(1);
+        function start02(num1) {
+            console.log('start02', num1);
+        }
+
+        let fun04 = num2 => {
+            console.log('num2', num2)
+        }
+
+        function start02(num1, num2) {
+            console.log('start02', num1+num2);
+        }
+
+        //fun05(1,2);//에러 발생
+        let fun05 = (num1, num2) => {
+            console.log(num1+num2)
+        }
+        fun05(1,2);
+
+        //callback 함수
+        document.querySelector('add').addEventListener('click', function() {});
+        document.querySelector('add').addEventListener('click', fun2);
+
+        document.querySelector('add').addEventListener('click', start);
+    </script>
+</body>
+</html>

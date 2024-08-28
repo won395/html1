@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>반응속도 게임</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #98c7fc84;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            /*background-image: url(111.jpg);*/
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+
+        form {
+            background-color: #ffffff;
+            padding: 45px;
+            border-radius: 8px;
+            box-shadow: 0 0 150px rgba(0, 255, 13, 0.300);
+            max-width: 590px;
+            width: 100%;
+        }
+
+        input[type="button"] {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 50px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        input[type="button"]:hover {
+            background-color: #0056b3;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        @media screen and (max-width: 600px) {
+            form {
+                padding: 15px;
+            }
+
+            input[type="button"] {
+                width: 100%;
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <form id="upForm">
+        <h1 class="center">반응속도 게임</h1><br><br>
+        <div class="center">
+            <div id="result">버튼을 눌러 시작하세요!</div>
+            <br><br>
+            <input type="button" id="startButton" value="시작!" onclick="Start()">
+            <input type="button" value="재시작" onclick="reGame()">
+        </div>
+    </form>
+    <script>
+        let startTime;
+        let timeoutId;
+        let isTooEarly = false;
+
+        function Start() {
+            document.getElementById("result").textContent = "준비!";
+            document.getElementById("startButton").disabled = true;
+
+            isTooEarly = true;
+
+            const randomDelay = Math.floor(Math.random() * 3000) + 2000;
+
+            timeoutId = setTimeout(() => {
+                document.body.style.backgroundColor = "lightgreen";
+                startTime = new Date();
+                document.getElementById("result").textContent = "지금 클릭하세요!";
+                document.getElementById("startButton").disabled = false;
+                isTooEarly = false;
+                document.getElementById("startButton").onclick = checkReactionTime;
+            }, randomDelay);
+
+            document.getElementById("startButton").onclick = function() {
+                if (isTooEarly) {
+                    document.body.style.backgroundColor = "red";
+                    document.getElementById("result").textContent = "너무 빨랐습니다!";
+                    clearTimeout(timeoutId);
+                    document.getElementById("startButton").onclick = null;
+                    document.getElementById("startButton").disabled = true;
+                }
+            };
+        }
+
+        function checkReactionTime() {
+            if (!isTooEarly) {
+                const reactionTime = new Date() - startTime;
+                document.getElementById("result").textContent = '반응속도: ' + reactionTime + ' ms';
+                document.getElementById("startButton").onclick = null;
+                document.getElementById("startButton").disabled = true;
+            }
+        }
+
+        function reGame() {
+            clearTimeout(timeoutId);
+            document.body.style.backgroundColor = "#98c7fc84";
+            document.getElementById("result").textContent = "버튼을 눌러 시작하세요!";
+            document.getElementById("startButton").value = "시작!";
+            document.getElementById("startButton").onclick = Start;
+            document.getElementById("startButton").disabled = false;
+            isTooEarly = false;
+        }
+    </script>
+</body>
+
+</html>
