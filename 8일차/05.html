@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>음식 사진</title>
+    <style>
+        /** main tool */
+        .picMain {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /** 음식사진 메인 */
+        .mainPic {
+            width: 400px;
+            height: 300px;
+            margin-bottom: 20px;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /** 음식사진 보조 **/
+        .suvPic {
+            width: 100%;
+            height: 100vh;
+        }
+
+        /** 갤러리 스타일 */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .photo {
+            width: calc(33% - 40px);
+            /* 너비 설정, 마진을 고려한 계산 */
+            margin: 20px;
+            height: 200px;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /** 버튼 공간 */
+        .btn_area {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            height: 70px;
+        }
+
+        .btn01 {
+            margin: 15px;
+            padding: 15px;
+            height: 30px;
+            border-radius: 15px;
+            font-size: 25px;
+            font-weight: bold;
+            align-items: center;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="picMain">
+        <div class="mainPic" id="mainPic">
+        </div>
+        <div class="suvPic">
+            <div class="btn_area">
+                <div class="btn01" onclick="result('all')">전체</div>
+                <div class="btn01" onclick="result('cookie')">쿠키</div>
+                <div class="btn01" onclick="result('cake')">케이크</div>
+            </div>
+            <!-- 사진첩 갤러리 -->
+            <div class="gallery"></div>
+        </div>
+    </div>
+    <script>
+        let obj = {
+            list: [
+                {
+                    caregory: 'cookie',
+                    url: '/img/cookie1.jpg'
+                },
+                {
+                    caregory: 'cookie',
+                    url: '/img/cookie2.jpg'
+                },
+                {
+                    caregory: 'cookie',
+                    url: '/img/cookie3.jpg'
+                },
+                {
+                    caregory: 'cake',
+                    url: '/img/cake1.jpg'
+                },
+                {
+                    caregory: 'cake',
+                    url: '/img/cake2.jpg'
+                },
+                {
+                    caregory: 'cake',
+                    url: '/img/cake3.jpg'
+                }
+            ]
+        };
+
+        function result(category) {
+            let gallery = document.getElementsByClassName('gallery')[0];
+            gallery.innerHTML = '';
+
+            for (let i = 0; i < obj.list.length; i++) {
+                if (category === obj.list[i].caregory || category === 'all') {
+                    let photoDiv = document.createElement('div');
+                    photoDiv.className = 'photo';
+                    let img = document.createElement('img');
+                    img.src = obj.list[i].url;
+                    img.style.width = '100%';
+                    img.style.height = '100%';
+                    img.onclick = function() {
+                        displayInMainPic(obj.list[i].url);
+                    };
+                    photoDiv.appendChild(img);
+                    gallery.appendChild(photoDiv);
+                }
+            }
+        }
+
+        function displayInMainPic(url) {
+            const mainPic = document.getElementById('mainPic');
+            mainPic.innerHTML = '';
+            let img = document.createElement('img');
+            img.src = url;
+            img.style.width = '100%';
+            img.style.height = '100%';
+            mainPic.appendChild(img);
+        }
+
+        window.onload = () => result('all');
+    </script>
+</body>
+</html>
