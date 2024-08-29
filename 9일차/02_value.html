@@ -3,29 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Input 창</title>
 
-    
 </head>
 <body>
     <input type="text" id="num1">
     <input type="text" id="num2">
-    <input type="button" value="전송" onclick="sand()">
+    <input type="button" value="전송" onclick="send()" >
     <input type="button" value="값 만들기" onclick="hello()">
-    
+
 
     <script src="/li/jquery-3.7.1.js"></script>
     <script>
-        function sand() {
+        function send() {
             let num1 = document.getElementById('num1').value;
-            let num2 = ($('num2').val());
+            let num2 = $('#num2').val();
 
             console.log('plus: ', Number(num1)+Number(num2));
         }
 
         function hello() {
             document.getElementById('num1').value = 'hello';
-            $('num2').val('hello');
+            $('#num2').val('hello');
         }
     </script>
 </body>

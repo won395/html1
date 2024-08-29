@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio</title>
+</head>
+
+<body>
+    <h1>좋아하는 계절</h1>
+    <input type="radio" name="season" value="spring">봄
+    <input type="radio" name="season" value="summber">여름
+    <input type="radio" name="season" value="fail">가을
+    <input type="radio" name="season" value="winter">겨울
+    <input type="button" value="전송1" onclick="send()">
+    <input type="button" value="전송2" onclick="send2()">
+    <input type="button" value="외워야 하는이유" onclick="send3()">
+
+
+    <script src="/li/jquery-3.7.1.js"></script>
+    <script>
+        /** javascript 불러온느 방법 */
+        function send() {
+            let radio = document.getElementsByName('season'); //getElements => return은 배열
+            //무엇이 선택 되었는지 확인하고 싶습니다.
+            for (let i = 0; i < radio.length; i++) {
+
+                //선택 값을 확인하고 싶습니다.
+                if (radio[i].checked == true) // => if(radio[i].checked) => true.
+                {
+                    console.log('선택 된 값: ', radio[i].value);
+                }
+            }
+        }
+
+        /** jquery 방법 easy */
+        function send2() {
+
+            //★★ 선택자가 name을 따로 불러오는 방법이 없기 때문에 해당 방법은 외워야 한다.
+            let radio = $('input[name="season"]'); 
+            //name은 테그를 통해서 불러옵니다.
+            //위의 방법이 싫다. 그러면 class를 임시로 지정.
+            //$('.inputRadio') => inputRadio라는 class 가진 모든 것 불러오기.
+
+
+            //무엇이 선택 되었는지 확인하고 싶습니다.
+            for (let i = 0; i < radio.length; i++) {
+
+                //선택 값을 확인하고 싶습니다.
+                if (radio[i].checked == true) // => if(radio[i].checked) => true.
+                {
+                    console.log('선택 된 값: ', radio[i].value);
+                }
+            }
+        }
+
+        function send3() {
+            //input[name="season"]:checked => input에서 check된 input만 불러옵니다.
+            let result = $('input[name="season"]:checked').val();
+            console.log('선택된 결과: ',result);
+        }
+    </script>
+</body>
+
+</html>
