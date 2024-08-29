@@ -91,22 +91,17 @@
                 isTooEarly = false;
                 document.getElementById("startButton").onclick = checkReactionTime;
             }, randomDelay);
-
-            document.getElementById("startButton").onclick = function() {
-                if (isTooEarly) {
-                    document.body.style.backgroundColor = "red";
-                    document.getElementById("result").textContent = "너무 빨랐습니다!";
-                    clearTimeout(timeoutId);
-                    document.getElementById("startButton").onclick = null;
-                    document.getElementById("startButton").disabled = true;
-                }
-            };
         }
 
         function checkReactionTime() {
-            if (!isTooEarly) {
+            if (isTooEarly) {
+                document.body.style.backgroundColor = "red";
+                document.getElementById("result").textContent = "너무 빨랐습니다!";
+                document.getElementById("startButton").onclick = null;
+                document.getElementById("startButton").disabled = true;
+            } else {
                 const reactionTime = new Date() - startTime;
-                document.getElementById("result").textContent = '반응속도: ' + reactionTime + ' ms';
+                document.getElementById("result").textContent = '반응속도: ' + reactionTime + ' sec';
                 document.getElementById("startButton").onclick = null;
                 document.getElementById("startButton").disabled = true;
             }
