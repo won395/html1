@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery</title>
+
+    <style>
+        input {
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="user" value="hello">
+    <script src="/li/jquery-3.7.1.js"></script>
+    <script>
+        /*
+        let sq = $('#user').val();
+        console.log(sq)
+
+        */
+        //jquery
+        console.log($('user'));
+
+        //javascript
+        console.log(document.querySelectorAll('user'));
+
+        console.log($('input').val());
+
+        //jquery하고 자바스크립트하고 병합해서 사용 가능
+        //쿼리는 자바스크립트의 코드를 요약해서 사용함
+        //쿼리는 불ㄹ러올떄  $를 통해서 불러오는데 (기능 자동)
+        //불러올떄 배열 (만약, 값이 한개일 경우 단일로도 자동으로 인식)
+
+        //자바스크립트 하고 쿼리 비교 했을떄 우선순위 공부하는게 좋음
+        //자바스크립트(바닐라) => 쿼리 ()
+        //퍼포먼스는 무슨언어는 비슷, 애매하게 배웠을떄 기준으로 자바 스크립트가 속도가 빠르다
+    </script>
+</body>
+</html>
