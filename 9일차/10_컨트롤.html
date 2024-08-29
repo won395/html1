@@ -1,0 +1,134 @@
+<html>
+	<head>
+		<title>컨트롤하기</title>
+
+		<style>
+			/*
+			.normal{text-decoration:normal;} 기본
+			.overline{text-decoration:overline;} 윗줄
+			.underline{text-decoration:underline;} 아랫줄
+			.line-through{text-decoration:line-through;} 취소선
+			*/
+			.inp01 {
+				padding: 15px;
+				border-radius: 15px;
+				font-size: 18px;
+			}
+
+			.inpH:hover, .inpH:focus {
+				border: 1px solid #3CB371;
+				/* hover와 focus 상태에서의 테두리 색상 변경 */
+				outline: none;
+				/* focus 문제 해결 */
+			}
+
+			.cur {
+				cursor: pointer;
+			}
+
+			.result {
+				font-size: 25px;
+			}
+		</style>
+
+	</head>
+	<body>
+		<table border="0" cellpadding="3" cellspacing="0">
+			<tr>
+				<td>
+					<input type="text" id="tbString" class="inp01 mar15 inpH">
+					<input type="button" value="미리 보기" onclick="applyStyles()" class="cur">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					색상: <select id="fontColor">
+						<option value="black">기본</option>
+						<option value="red">빨강</option>
+						<option value="green">초록</option>
+						<option value="blue">파랑</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					크기: <select id="fontSize">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="checkbox" id="lineThrough">취소선
+					<input type="checkbox" id="big">크게
+					<input type="checkbox" id="small">작게
+					<input type="checkbox" id="bold">두껍게
+					<input type="checkbox" id="italic">기울임
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="checkbox" id="superscript">위첨자
+					<input type="checkbox" id="subscript">아래첨자
+					<input type="checkbox" id="lowercase">소문자로
+					<input type="checkbox" id="uppercase">대문자로
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input id="result" class="inp01 mar15 inpH result" readonly>
+				</td>
+			</tr>
+		</table>
+
+		<script src="/li/jquery-3.7.1.js"></script>
+        <script>
+            function applyStyles() {
+                let text = document.getElementById('tbString').value;
+                let color = document.getElementById('fontColor').value;
+                let size = document.getElementById('fontSize').value;
+                
+                
+                let style = `color: ${color}; font-size: ${size}em;`;
+
+                // Apply text decorations based on checkboxes
+                if (document.getElementById('lineThrough').checked) { 	//취소선
+                    style += ' text-decoration: line-through;';
+                }
+				if (document.getElementById('big').checked) { 			// 크게
+                    style += 'font-size: 150%;';
+                }
+				if (document.getElementById('small').checked) {		// 작게
+                    style += 'font-size: 10%;';
+                }
+                if (document.getElementById('bold').checked) { 			// 두껍게
+                    style += ' font-weight: bold;';
+                }
+                if (document.getElementById('italic').checked) {		// 기울게
+                    style += ' font-style: italic;';
+                }
+                if (document.getElementById('superscript').checked) {	// 윗첨자
+                    style += 'text-decoration:overline;';
+                }
+                if (document.getElementById('subscript').checked) {		// 아랫첨자
+                    style += 'text-decoration:underline;';
+                }
+                if (document.getElementById('lowercase').checked) {		// 소문자로
+                    style += 'text-transform:lowercase';
+                }
+                if (document.getElementById('uppercase').checked) {		// 대문자로
+                    style += 'text-transform:uppercase;';
+                }
+
+                // Set the result input's value and style
+                document.getElementById('result').value = text;
+                document.getElementById('result').style = style;
+            }
+        </script>
+	</body>
+</html>
