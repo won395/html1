@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Display</title>
+    <style>
+        /* 기본 스타일 */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* 컨테이너 스타일 */
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: start;
+        }
+
+        /* 카드 스타일 */
+        .card {
+            position: relative;
+            padding: 20px;
+            width: 300px;
+            height: 300px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            transition: box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        /* 카드에 마우스를 올렸을 때 */
+        .card:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 제목 스타일 */
+        .card .title {
+            margin-bottom: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            height: 50px;
+        }
+
+        /* 내용 스타일 */
+        .card .body {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+            overflow: scroll;
+        }
+
+        /* 사용자 ID와 게시글 ID 스타일 */
+        .card .info {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            font-size: 12px;
+            color: #999;
+            margin-top: 15px;
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body onload="send()">
+    <div class="container" id="listContent2">
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        function send() {
+            $.ajax({
+                url: 'https://jsonplaceholder.typicode.com/posts',
+                type: 'get',
+                dataType: 'json',
+                success: function (list1) {
+                    let list = list1;
+
+                    if (list.length <= 0) {
+                        console.log('list 값 없음');
+                    }
+
+                    let listContent = '';
+                    for (let i = 0; i < list.length; i++) {
+                        listContent += `<div class="card" onclick="aw(${list[i].id})">`;
+                        listContent += `<div class="title">${list[i].title}</div>`;
+                        listContent += `<div class="body">${list[i].body}</div>`;
+                        listContent += `<div class="info">User ID: ${list[i].userId} | Post ID: ${list[i].id}</div>`;
+                        listContent += `</div>`;
+                    }
+
+                    $('#listContent2').html(listContent);
+                }
+            })
+        }
+
+        function aw(postId) {
+            location.href = `05_Detail_Display.html?id=${postId}`;
+        }
+    </script>
+</body>
+
+</html>

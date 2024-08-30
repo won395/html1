@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="button" value="전송" onclick="send()">
+    <script src="/li/jquery-3.7.1.js"></script>
+    <script>
+        function send() {
+          //서버에 요청하는 함수 사용할때 j쿼리 라이브러리에 이용해서 사용
+          //j쿼리 언어를 사용할때 에이젝스 사용 (호환성 문제)
+            $.ajax({
+              url: "https://jsonplaceholder.typicode.com/posts", //요청 대상(외부 url으로 요청)
+              type: "get", //(get, post 구분)
+              dataType: "json", // 어떤 방식으로 주는 것인지 힌트를 줌
+              //디폴트는 text(string)
+              success: function(rs) {
+                console.log(rs);
+              }  
+          })
+        }
+    </script>
+</body>
+</html>

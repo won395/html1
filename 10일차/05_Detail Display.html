@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Display</title>
+    <style>
+        /* 기본 스타일 */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* 상세 정보 컨테이너 스타일 */
+        .detail-container {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 600px;
+            box-sizing: border-box;
+        }
+
+        /* 상세 정보 제목 스타일 */
+        .detail-container h2 {
+            margin-top: 0;
+            font-size: 24px;
+            color: #333;
+        }
+
+        /* 상세 정보 항목 스타일 */
+        .detail-container p {
+            margin: 15px 0;
+            font-size: 18px;
+            color: #555;
+        }
+
+        /* 항목의 강조 텍스트 스타일 */
+        .detail-container p strong {
+            color: #333;
+        }
+
+        /* 뒤로 가기 버튼 스타일 */
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="detail-container" class="detail-container">
+        <h2>Detail Information</h2>
+        <p><strong>Title:</strong> <span id="detail-title"></span></p>
+        <p><strong>Body:</strong> <span id="detail-body"></span></p>
+        <p><strong>User ID:</strong> <span id="detail-userId"></span></p>
+        <p><strong>Post ID:</strong> <span id="detail-id"></span></p>
+        <button id="back-button" class="back-button">뒤로가기</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // URL 파라미터에서 ID를 가져오기
+            let us = new URLSearchParams(window.location.search);
+            let postId = us.get('id'); // URL에서 id 파라미터 값을 가져옴
+
+            if (postId) {
+                $.ajax({
+                    url: "https://jsonplaceholder.typicode.com/posts/" + postId, // 요청 대상
+                    type: "get", // 전송 방식
+                    dataType: "json", // 응답 데이터 형식
+                    success: function (data) {
+                        // 데이터를 HTML 요소에 삽입
+                        $("#detail-title").text(data.title);
+                        $("#detail-body").text(data.body);
+                        $("#detail-userId").text(data.userId);
+                        $("#detail-id").text(data.id);
+                    },
+                    error: function () {
+                        alert("데이터를 불러오는 데 실패했습니다.");
+                    }
+                });
+            } else {
+                alert("유효하지 않은 게시물 ID입니다.");
+            }
+
+            $("#back-button").click(function () {
+                history.back();
+            });
+        });
+    </script>
+</body>
+
+</html>
