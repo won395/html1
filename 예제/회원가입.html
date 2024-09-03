@@ -13,7 +13,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-image: url(111.jpg);
+            background-image: url(/img/111.jpg);
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
@@ -122,7 +122,7 @@
             </tr>
             <tr>
                 <td>아이디:</td>
-                <td><input type="text" name="userid" maxlength="12" placeholder="ID입력" required> <small> 4-12자의 영문 대소문자와 숫자로만 입력</small></td>
+                <td><input type="text" name="userid" maxlength="12" placeholder="ID입력" required> <small> 3-12자의 영문 대소문자와 숫자로만 입력</small></td>
             </tr>
             <tr>
                 <td>비밀번호:</td>
@@ -145,7 +145,7 @@
             </tr>
             <tr>
                 <td>주민등록번호:</td>
-                <td><input type="text" name="ssn" placeholder="주민번호입력" required oninput="formatSSN(this)"> <small>예) 123456-1234567</small></td>
+                <td><input type="text" name="ssn" id="ssn" placeholder="주민번호입력" required oninput="formatSSN(this)"> <small>예) 123456-1234567</small></td>
             </tr>
             <tr>
                 <td>생일:</td>
@@ -191,6 +191,7 @@
         </div>
     </form>
 
+    <script src="/li/jquery-3.7.1.js"></script>
     <script>
         var regStartDtdaySelect = document.getElementById("regStartDt_day");
         for(var day = 1; day <= 31; day++) {
@@ -215,7 +216,7 @@
         input.value = formattedValue;
     }
 
-    document.getElementById('ssn-input').addEventListener('input', function () {
+    document.getElementById('ssn').addEventListener('input', function () {
         formatSSN(this);
     });
 
@@ -228,9 +229,11 @@
             var email = form.email.value;
             var name = form.name.value;
             var ssn = form.ssn.value;
-            var birthyear = form.birthyear.value;
-            var birthmonth = form.birthmonth.value;
-            var birthday = form.birthday.value;
+            let birthyear = form.birthyear.value;
+            let birthmonth = form.birthmonth.value;
+            let birthday = form.birthday.value;
+            var birth = birthyear + '-' + birthmonth + '-' + birthday;
+            let selfintro = form.selfintro.value;
 
             // console.log()을 사용하여 각 값 출력
             console.log("아이디:", userid);
@@ -243,8 +246,8 @@
             console.log("생월:", birthmonth);
             console.log("생일:", birthday);
 
-            if (userid.length < 4 || userid.length > 12 || !/^[a-zA-Z0-9]+$/.test(userid)) {
-                alert("아이디는 4-12자의 영문 대소문자와 숫자로만 입력해야 합니다.");
+            if (userid.length < 3 || userid.length > 12 || !/^[a-zA-Z0-9]+$/.test(userid)) {
+                alert("아이디는 3-12자의 영문 대소문자와 숫자로만 입력해야 합니다.");
                 return false;
             }
 
@@ -258,10 +261,10 @@
                 return false;
             }
 
-            if (!/^\d{6}-\*{7}$/.test(ssn)) {
-                alert("주민등록번호 형식이 올바르지 않습니다.");
-                return false;
-            }
+            // if (!/^\d{6}-\*{7}$/.test(ssn)) {
+            //     alert("주민등록번호 형식이 올바르지 않습니다.");
+            //     return false;
+            // }
 
             if (isNaN(birthyear) || birthyear.length !== 4) {
                 alert("유효한 생년을 입력하세요.");
@@ -279,7 +282,47 @@
             }
 
             alert("회원가입이 완료되었습니다.");
-            form.submit();
+            //form.submit();
+
+            /*
+            let ID = document.getElementsByName('userid');          // 아이디
+	        let PW = document.getElementsByName('password');        // 비번
+	        let email = document.getElementsByName('email');        // 이메일
+	        let NAME = document.getElementsByName('name');          // 이름
+	        let wnals = document.getElementsByName('ssn');          // 주민번호
+	        let birth = document.getElementsByName('birthyear');    // 생일
+	        let sogee = document.getElementsByName('selfintro');    // 소개
+            */
+
+            let obj = {
+                'userid': userid.value, 
+                'password': password.value, 
+                'email': email.value, 
+                'name': name.value, 
+                'ssn': ssn.value, 
+                'birthyear': birth.value, 
+                'selfintro': selfintro.value
+            };
+
+            $.ajax({
+                url: 'http://localhost:3000/sign',
+                type: 'get',
+                data: obj,
+                datatype: 'json',
+                success: function(res) {
+                    console.log(res);
+                    if(res.status == 200) {
+                        let list = res.list;
+                        console.log(list);
+                    } else {
+                        alert('서버에 응답 오류');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("ajax 요청 오류: ", error);
+                    alert("서버에 연결 할수 없음. 다시 하십쇼!");
+                }
+            })
         }
     </script>
 </body>
