@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로미스</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- jQuery를 Bootstrap JavaScript보다 먼저 로드 -->
+    <script src="/li/jquery-3.7.1.js"></script>
+    
+    <!-- 그 다음에 Bootstrap JavaScript 로드 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</head>
+<body>
+    <button type="button" class="btn btn-outline-primary" onclick="on()">Primary</button>
+    <button type="button" class="btn btn-outline-primary" onclick="promi()">Primary</button>
+    <button type="button" class="btn btn-outline-primary" onclick="aj()">비동기통신</button>
+
+    <script>
+        function on() {
+            setTimeout(function(){
+                console.log('set time out');
+            }, 1000);
+            console.log("실행영역");
+        }
+
+        function promi() {
+            let pro = new Promise(function(resolve, reject) {
+                console.log("동작");
+
+                let check = true;
+                if(check) {
+                    resolve("빨간색");
+                } else {
+                    reject('파란색');
+                }
+            });
+
+            pro
+            .then(result => {
+                console.log(result);
+            })
+            .catch(result => {
+                console.log(result);
+            });
+        }
+
+        function aj() {
+            let result = new Object(); //결과값을 보관함
+
+            let obj = {name: '슈퍼맨'};
+            console.log(obj);
+            new Promise((resolve, reject) => {
+                $.ajax({
+                    url: 'http://localhost:3000/send1',
+                    type: 'post',
+                    data: JSON.stringify(obj),
+                    contentType: 'application/json',
+                    success: function(res) {
+                        console.log(res);
+                        resolve(res);
+                    },
+                    error: function(xhr, status, error) {
+                        reject(status);
+                    }
+                });
+            })
+            .then(result => {
+                console.log('성공', result);
+            })
+            .catch(result => {
+                console.log('error', result);
+            });
+
+            //console.log(res);
+        }
+
+        //async
+        async function ay() {
+            // 이 기능이 완전히 끝날떄 까지 기다려주는 기능
+            //프로미스가 복잡해서, 프로미스를 단순하게 해주는 기능
+            // 그래서 이 기능은 프로미스가 적용된것만 사용 가능⭐⭐⭐
+
+            await $.ajax({
+                    url: 'http://localhost:3000/send1',
+                    type: 'post',
+                    data: JSON.stringify(obj),
+                    contentType: 'application/json',
+                    success: function(res) {
+                        console.log(res);
+                        resolve(res);
+                    },
+                    error: function(xhr, status, error) {
+                        reject(status);
+                    }
+                });
+        }
+    </script>
+</body>
+</html>

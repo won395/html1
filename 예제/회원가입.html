@@ -283,17 +283,6 @@
 
             alert("회원가입이 완료되었습니다.");
             //form.submit();
-
-            /*
-            let ID = document.getElementsByName('userid');          // 아이디
-	        let PW = document.getElementsByName('password');        // 비번
-	        let email = document.getElementsByName('email');        // 이메일
-	        let NAME = document.getElementsByName('name');          // 이름
-	        let wnals = document.getElementsByName('ssn');          // 주민번호
-	        let birth = document.getElementsByName('birthyear');    // 생일
-	        let sogee = document.getElementsByName('selfintro');    // 소개
-            */
-
             let obj = {
                 'userid': userid.value, 
                 'password': password.value, 
@@ -306,7 +295,7 @@
 
             $.ajax({
                 url: 'http://localhost:3000/sign',
-                type: 'get',
+                type: 'psot',
                 data: obj,
                 datatype: 'json',
                 success: function(res) {
@@ -324,6 +313,34 @@
                 }
             })
         }
+
+
+            function getBtn() {
+
+                //비동기 통신
+                $.ajax({
+                    type: 'get',
+                    url: 'http://localhost:3000/get',
+                    success: function(res) {
+                        console.log(res);
+                    }
+                });
+                }
+
+                //2번째 버튼 실행
+                document.querySelectorAll('button[type="button"]')[1].addEventListener('click', function() {
+                let obj = {name: '슈퍼맨'};
+                console.log(obj);
+                $.ajax({
+                    url: 'http://localhost:3000/send1',
+                    type: 'post',
+                    data: JSON.stringify(obj),
+                    contentType: 'application/json',
+                    success: function(res) {
+                        console.log(res);
+                    }
+                })
+            })
     </script>
 </body>
 </html>
