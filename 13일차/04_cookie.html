@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cookie</title>
+</head>
+<body>
+    <h1>쿠키 확인</h1><br>
+    <input type="button" value="쿠키 체크하기" onclick="getcookie()">
+    <input type="button" value="쿠키 저장" onclick="setcookie()">
+
+    <script>
+        //쿠키생성
+        function setcookie() {
+            document.cookie = 'key = value'; // name = value, key = value
+        }
+
+        //그냥 저장했을때 내가 켜고 있는 브라우저가 종료되면 쿠키 삭제
+
+        //쿠키모두 불러오기
+        function getcookie() {
+            console.log(document.cookie);
+        }
+    </script><br><br><br>
+
+    <hr><br>
+    <h1>쿠키 만료기간 만들기</h1><br>
+    <input type="button" value="쿠키 체크하기" onclick="getcookie()">
+    <input type="button" value="쿠키 만료기간" onclick="setdaycookie()">
+    <input type="button" value="쿠키 기능" onclick="maxsave()">
+
+    <input type="input" id="input1">
+    <input type="button" value="쿠키 불러오기" onclick="getname()">
+    <input type="button" value="쿠키 삭제하기" onclick="delcookie()">
+
+    <script>
+
+        function delcookie() {
+            let cookname = document.getElementById('input1');
+
+            console.log('삭제 대상 쿠키: ', cookname.value);
+            document.cookie = cookname.value+'= ;Max-age=-1;';
+            //삭제할때 주의 사항
+            // 만들때 옵션 설정 한것 삭제할떄 그옵션 그대로 갖고 와야됨
+            //생략했으면 생략한 그대로 도메인 혹은 시큐리티르 설정했으면 그거 그대로 들고 와야됨
+            //exfries하고 max-age 제외  max-age의 값이 -1일때 삭제
+        }
+
+        function getname() {
+            let cookname = document.getElementById('input1');
+            let va = getCookies(cookname.value);
+            console.log('value: ',va);
+
+            cookname.value = '';
+            cookname.focus();
+
+        }
+
+
+        // 만료기간을 설정하기 위해서느 쿠키에 exfires 통신을 추가해야됨
+        // 익스파이어스
+        function setdaycookie() {
+            let date = new Date();
+            date.setTime(date.getDate() + (1000*60*60*24*1000));
+            console.log(date.toUTCString());
+            let exfires = "exfires"+date.toUTCString()+';';
+
+            document.cookie ='day=cook;'+exfires;
+            //document.cookie = "cook=value" exfires
+        }
+
+        function getcookie() {
+            console.log(document.cookie);
+        }
+
+        //max-age
+        function maxSave() {
+            //숫자를 지정을 하는데 1 = 1초임
+            document.console = 'obj=apple; max-age='+5; 
+        }
+
+        //시큐리티
+        //ssl 적용된것만 쿠키가 실행되도록 설정
+        //보안을 위해서 만들어짐 https에서만 작동
+        document.cookie ="sec=value; Secure;";
+
+        //도메인
+        //주소 localhost
+        //https://naver.com => naver.com / 
+        document.cookie="doc=banana; Domain=localhost";
+        //도메인 속성을 입력을 안할 경우, defult로 현재 사이트의 도메인이 자동으로 입력
+        //현재 페이지의 쿠키가 저장된 도메인이 일칳라지 않으면 쿠키는 실행되지않느다
+
+        //path
+        document.cookie = 'pa=papa; path=/';
+        //서버에 대한 환경에 따라서 있는 경우가 있고 없는 경우가 존재
+        // 한국은 없는 경우가 대부분 (이유는 ip가 너무 많음)
+
+        //ip란 개로 여러 회사가 같이 사용 => port로 구분
+        //path '/'이게 현재 폴더 위치 '../li/asd'
+        //우리는 서버 개념이 없고, 폴더를 통해서 주고 받다보니 path
+        //path='/' 애는 최상위, 이경로 기준, 하위 디렉터리 모두 포함 '/li' => ok
+
+        function getCookies(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1);
+            if (c.indexOf(nameEQ) == 0) {
+                return c.substring(nameEQ.length, c.length);
+            }
+        }
+        return null;
+    }
+
+//cookie 저장 형태
+cook=100; cook1=150
+    </script>
+</body>
+</html>

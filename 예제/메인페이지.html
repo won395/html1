@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>로그인</title>
+    <title>메인페이지</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -48,15 +48,6 @@
             text-align: left;
         }
 
-        input[type="text"], input[type="password"], input[type="email"] {
-            width: 44%;
-            padding: 8px;
-            margin-top: 5px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-
         input[type="button"] {
             background-color: #007BFF;
             color: white;
@@ -79,6 +70,10 @@
             text-align: center; /* 버튼과 제목 가운데 정렬 */
         }
 
+        #useridDisplay {
+            margin-top: 20px;
+        }
+
         @media screen and (max-width: 600px) {
             form {
                 padding: 15px;
@@ -96,54 +91,37 @@
     </style>
 </head>
 <body>
-    <form id="signupForm">
-        <h1>로그인</h1>
+    <form id="mainForm">
+        <h1>메인페이지 입니다</h1>
         <table>
             <tr>
-                <th colspan="2">로그인</th>
-            </tr>
-            <tr>
-                <td>아이디:</td>
-                <td><input type="text" id="userid" name="userid" maxlength="12" placeholder="ID입력" required> <small> 4-12자의 영문 대소문자와 숫자로만 입력</small></td>
-            </tr>
-            <tr>
-                <td>비밀번호:</td>
-                <td><input type="password" id="password" name="password" maxlength="12" placeholder="PW입력" required> <small> 4-12자의 영문 대소문자와 숫자로만 입력</small></td>
+                <th colspan="2">Main</th>
             </tr>
         </table>
         <div class="center">
-            <input type="button" value="로그인" onclick="validateForm()"> 
-            <input type="button" value="회원가입" onclick="goToSignup()">
+            <input type="button" value="아이디 확인하기" onclick="showUserId()">
+            <div id="useridDisplay"></div> <!-- 아이디 출력 영역 -->
         </div>
     </form>
 
     <script>
-        function goToSignup() {
-            window.location.href = '회원가입.html'; // 회원가입 페이지로 이동
+        function getCookie(name) {
+            const value = "; " + document.cookie;
+            const parts = value.split("; " + name + "=");
+            if (parts.length === 2) return parts.pop().split(";").shift();
         }
 
-        function setCookie(name, value, days) {
-            let expires = "";
-            if (days) {
-                const date = new Date();
-                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-                expires = "; expires=" + date.toUTCString();
-            }
-            document.cookie = name + "=" + (value || "") + expires + "; path=/";
-        }
-
-        function validateForm() {
-            const userid = document.getElementById('userid').value;
-            const password = document.getElementById('password').value;
-
-            if (userid && password) {
-                console.log("입력된 아이디:", userid); // 아이디를 콘솔에 출력
-                setCookie('userid', userid, 1); // 쿠키에 아이디 저장 (1일 유지)
-                location.href = '메인페이지.html'; // 메인페이지로 이동
+        function showUserId() {
+            const userid = getCookie('userid');
+            if (userid) {
+                document.getElementById('useridDisplay').textContent = "로그인된 아이디: " + userid;
+                console.log("아이디: ",userid);
             } else {
-                alert('아이디와 비밀번호를 입력하세요.');
+                document.getElementById('useridDisplay').textContent = "아이디 정보가 없습니다.";
             }
         }
+        // 페이지가 로드되면 아이디를 바로 표시
+        window.onload = showUserId;
     </script>
 </body>
 </html>

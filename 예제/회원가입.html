@@ -188,11 +188,17 @@
         <div class="center">
             <input type="button" value="회원가입" onclick="validateForm()"> 
             <input type="button" value="다시 입력" onclick="document.getElementById('signupForm').reset();">
+            <input type="button" value="뒤로가기" onclick="back()"> 
         </div>
     </form>
 
     <script src="/li/jquery-3.7.1.js"></script>
+
     <script>
+        function back() {
+            window.location.href="로그인.html"
+        }
+
         var regStartDtdaySelect = document.getElementById("regStartDt_day");
         for(var day = 1; day <= 31; day++) {
             var option = document.createElement("option");
@@ -329,7 +335,7 @@
 
                 //2번째 버튼 실행
                 document.querySelectorAll('button[type="button"]')[1].addEventListener('click', function() {
-                let obj = {name: '슈퍼맨'};
+                //let obj = {name: ''};
                 console.log(obj);
                 $.ajax({
                     url: 'http://localhost:3000/send1',

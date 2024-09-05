@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="저장" onclick="save()">
+    <input type="button" value="불러오기" onclick="load()">
+    <input type="button" value="삭제" onclick="del()">
+    <input type="button" value="전체삭제" onclick="delAll()">
+    <input type="button" value="다음페이지" onclick="move()">
+
+    <script>
+        function del() {
+            localStorage.removeItem('key');
+        }
+
+        //로컬스토라지 서버에 저장하는 방식 x 사용자pc에 저장하느 방식
+        //내가 만든 사이트와 다른 곳에 로컬스토리지를 사용했을 경우 덮어씌울 가능성이 존재함
+        //1. 네이버에 키값을 유저로 ''를 저장
+        //2. 구글에서 키값을 유저로 ''로 저장
+
+        //네이버에서 로컬 스토리지를 열었을떄 'nolo'를 저장 했지만 표시되는것은 'gelo'로 표시
+
+        //영구적으로 데이터를 보관하는 용은 절대 아님
+        //디비에서 대용량 데이터를 1000만건을 불러옴 한 체이지를 이동할떄 마다 똑같은 데이터를 불러온다 똑같은 데이터는 또다시 부를 필요가 없다
+        //또 다시 부르지 않기 위해 사용자pc에 일시적으로 보관
+
+        //리엑터의 특징은 첨 불러올떄 느리지만 그 뒤엔 빨라짐
+
+        //이건 언제 삭제되냐 -> 브라우저에 쿠키 삭제
+
+
+        //모든 키 삭제 (많이 사용함) ⭐⭐⭐
+        function delAll() {
+            localStorage.clear();
+        }
+
+
+
+        function move() {
+            location.href = "02_local.html"
+        }
+
+
+        function save() {
+            localStorage.setItem('key', 'value');
+            
+        }
+
+        function load() {
+            localStorage.getItem('key');
+            console.log(key)
+        }
+    </script>
+</body>
+</html>
